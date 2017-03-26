@@ -17,8 +17,10 @@ class S(BaseHTTPRequestHandler):
     def do_POST(self):
         # Doesn't do anything with posted data
         self._set_headers()
+        print "POST"
         request = self.rfile.read(int(self.headers.getheader('content-length')))
         handleRequest(request)
+        self.wfile.write("POST REQUEST\n")
         
 def run(server_class=HTTPServer, handler_class=S, port=8123):
     server_address = ('', port)
